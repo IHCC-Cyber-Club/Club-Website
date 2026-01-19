@@ -1,95 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyber Security Club</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0f172a;
-      color: white;
-      line-height: 1.5;
-    }
-    header {
-      background: #1e293b;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 2px solid #334155;
-    }
-    section {
-      padding: 25px;
-      border-bottom: 1px solid #334155;
-    }
-    h2 {
-      color: #38bdf8;
-    }
-    .officer, .member, .meeting, .minute {
-      background: #1e293b;
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IHCC Cybersecurity Club</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
+  <div id="bg"></div>
 
-<header>
-  Cyber Security Club – [Your School Name]
-</header>
+  <div class="page">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand">IHCC Cybersecurity Club</div>
+        <div class="navlinks">
+          <a class="active" href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="notes.html">Notes</a>
+        </div>
+      </div>
+    </div>
 
-<section>
-  <h2>About Us</h2>
-  <p>
-    Welcome to the Cyber Security Club! We focus on ethical hacking, CTF competitions,
-    security education, and helping students safely explore the cybersecurity world.
-  </p>
-</section>
+    <section class="hero band">
+      <div class="container">
+        <h1 class="glitch-text" data-text="IHCC CYBER">IHCC CYBER</h1>
+        <div style="margin-top:28px;">
+          <a class="btn" href="about.html">About Us</a>
+        </div>
+      </div>
+    </section>
 
-<section>
-  <h2>Club Officers</h2>
-  <div class="officer">President: <strong>[Name]</strong></div>
-  <div class="officer">Vice President: <strong>[Name]</strong></div>
-  <div class="officer">Treasurer: <strong>[Name]</strong></div>
-  <div class="officer">Advisor: <strong>[Teacher's Name]</strong></div>
-</section>
+    <section class="band">
+      <div class="container">
+        <div class="section-title">Frequently Asked Questions</div>
 
-<section>
-  <h2>Meetings</h2>
-  <div class="meeting">Next Meeting: <strong>[Date, Time]</strong> in <strong>[Room]</strong></div>
-  <div class="meeting">Regular Schedule: [Example: Every Thursday at 3:30 PM]</div>
-</section>
+        <div class="grid">
+          <div class="card">
+            <div class="icon">?</div>
+            <h3>What is the IHCC Cyber Security Program?</h3>
+            <p>
+              The Cybersecurity &amp; Systems Administration (A.A.S.) program focuses on hands-on skills in
+              networking, systems administration, and cyber defense.
+            </p>
+          </div>
 
-<section>
-  <h2>Meeting Minutes</h2>
-  <div class="minute"><strong>[Date]</strong>: Summary of what the club discussed or worked on.</div>
-  <div class="minute"><strong>[Date]</strong>: Another example summary.</div>
-</section>
+          <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>What does this club do?</h3>
+            <p>
+              We collaborate on labs, tools, and projects (CTFs, blue-team practice, homelab builds, etc.)
+              to build skills and community.
+            </p>
+          </div>
 
-<section>
-  <h2>Members</h2>
-  <div class="member"><strong>[Student Name]</strong> – [Grade]</div>
-  <div class="member"><strong>[Student Name]</strong> – [Grade]</div>
-</section>
+          <div class="card">
+            <div class="icon">📅</div>
+            <h3>When and where do you meet?</h3>
+            <p>
+              We meet weekly on campus. Check the Notes page for the latest schedule and topics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section>
-  <h2>Goals</h2>
-  <ul>
-    <li>Prepare for cybersecurity competitions</li>
-    <li>Teach security tools and ethical hacking fundamentals</li>
-    <li>Promote digital safety awareness</li>
-    <li>Strengthen teamwork and problem-solving skills</li>
-  </ul>
-</section>
+    <section class="band">
+      <div class="container">
+        <div class="callout-wrap">
+          <div class="callout">
+            <h3>Meeting Notes</h3>
+            <p>Click below to access meeting notes and recent topics.</p>
+            <a class="btn secondary" href="notes.html">Meeting Notes</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section>
-  <h2>Contact</h2>
-  <p>Email: <strong>[contact-email@school.edu]</strong></p>
-  <p>Discord: <strong>[invite link]</strong></p>
-</section>
+    <footer class="footer">
+      <div style="font-weight:900;">IHCC Cyber</div>
+      <div class="mini">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="notes.html">Notes</a>
+      </div>
+    </footer>
+  </div>
 
+  <script type="module">
+    import { startBackgroundNet } from "./assets/bg-network.js";
+    startBackgroundNet("bg");
+  </script>
 </body>
 </html>

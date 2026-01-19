@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About • IHCC Cybersecurity Club</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+
+<body>
+  <div id="bg"></div>
+
+  <div class="page">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand">IHCC Cybersecurity Club</div>
+        <div class="navlinks">
+          <a href="index.html">Home</a>
+          <a class="active" href="about.html">About</a>
+          <a href="notes.html">Notes</a>
+        </div>
+      </div>
+    </div>
+
+    <section class="band" style="padding: 56px 0 26px;">
+      <div class="container" style="text-align:center;">
+        <div style="font-size:34px;font-weight:900;">About the IHCC Cybersecurity Club</div>
+        <div style="color: var(--muted); font-size: 13px; margin-top:10px;">
+          A student-led organization focused on building skills, community, and real-world cybersecurity experience.
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container" style="padding: 34px 0 50px;">
+        <div class="section-title" style="padding-top:0;">Our Story</div>
+        <div class="card" style="min-height:auto;">
+          <p style="margin:0;">
+            The IHCC Cybersecurity Club brings students together to practice skills, work on projects,
+            and support each other. We focus on learning by doing—labs, capture-the-flag challenges,
+            and real troubleshooting.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="container">
+        <div class="section-title">Our Values</div>
+        <div class="grid">
+          <div class="card">
+            <div class="icon">🤝</div>
+            <h3>Community</h3>
+            <p>Build strong student connections that last beyond the classroom.</p>
+          </div>
+          <div class="card">
+            <div class="icon">📚</div>
+            <h3>Academic Support</h3>
+            <p>Study groups and peer help to improve understanding and success.</p>
+          </div>
+          <div class="card">
+            <div class="icon">🧠</div>
+            <h3>Collaboration</h3>
+            <p>Work together on challenges and projects to learn teamwork skills.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div style="font-weight:900;">IHCC Cyber</div>
+      <div class="mini">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="notes.html">Notes</a>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { startBackgroundNet } from "./assets/bg-network.js";
+    startBackgroundNet("bg");
+  </script>
+</body>
+</html>
