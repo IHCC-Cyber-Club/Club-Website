@@ -2,10 +2,10 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const { title, date, time, attendance, content, filename } = req.body;
-  const token = process.env.GITHUB_TOKEN;
+  const token = process.env.GITHUB_TOKEN; 
   const repoPath = 'IHCC-Cyber-Club/Club-Website';
 
-  // THE FULL HTML TEMPLATE
+  // THE HTML TEMPLATE (Based on your exact code)
   const fullHtml = `<!doctype html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Minutes • ${title}</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="../../assets/styles.css">
 </head>
 <body>
   <div id="bg"></div>
@@ -22,35 +22,35 @@ export default async function handler(req, res) {
       <div class="nav-inner">
         <div class="brand">IHCC Cybersecurity Club</div>
         <div class="navlinks">
-          <a href="../index.html">Home</a>
-          <a href="../about.html">About</a>
-          <a class="active" href="../notes.html">Notes</a>
+          <a href="../../index.html">Home</a>
+          <a href="../../about.html">About</a>
+          <a class="active" href="../../notes.html">Notes</a>
         </div>
       </div>
     </div>
     <section class="minutes">
       <div class="container">
-        <a class="back-btn" href="../notes.html">Back</a>
+        <a class="back-btn" href="../../notes.html">Back</a>
         <div class="minutes-doc">
           <p class="minutes-line"><span class="minutes-label">Date:</span> ${date}</p>
           <p class="minutes-line"><span class="minutes-label">Time:</span> ${time}</p>
           <p class="minutes-line"><span class="minutes-label">Attendance:</span> ${attendance}</p>
           <div class="minutes-section-title">Topics Discussed:</div>
-          <div class="minutes-paragraph">${content}</div>
+          ${content}
         </div>
       </div>
     </section>
     <footer class="footer">
       <div style="font-weight:900;">IHCC Cyber</div>
       <div class="mini">
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About</a>
-        <a href="../notes.html">Notes</a>
+        <a href="../../index.html">Home</a>
+        <a href="../../about.html">About</a>
+        <a href="../../notes.html">Notes</a>
       </div>
     </footer>
   </div>
   <script type="module">
-    import { startBackgroundNet } from "../assets/bg-network.js";
+    import { startBackgroundNet } from "../../assets/bg-network.js";
     startBackgroundNet("bg");
   </script>
 </body>
@@ -66,7 +66,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        message: `Add formatted minutes: ${title}`,
+        message: `Create Minutes: ${title}`,
         content: encodedContent,
         branch: 'main'
       })

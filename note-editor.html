@@ -1,20 +1,20 @@
 <main>
     <div class="container">
-        <h1>Note Editor</h1>
-        <div class="field"><label>Meeting Title</label><input type="text" id="t" placeholder="e.g. Weekly Meeting"></div>
-        <div class="field"><label>Date</label><input type="text" id="d" placeholder="e.g. Monday, January 5th, 2026"></div>
-        <div class="field"><label>Time</label><input type="text" id="time" placeholder="e.g. 11:45 AM – 12:00 PM"></div>
+        <h1>Minutes Editor</h1>
+        <div class="field"><label>Title (Tab Name)</label><input type="text" id="t" placeholder="e.g. Jan 5, 2026"></div>
+        <div class="field"><label>Full Date Line</label><input type="text" id="d" placeholder="e.g. Monday, January 5th, 2026"></div>
+        <div class="field"><label>Time Range</label><input type="text" id="time" placeholder="e.g. 11:45 AM – 12:00 PM"></div>
         <div class="field"><label>Attendance</label><input type="text" id="att" placeholder="Names separated by commas"></div>
         <div class="field">
-            <label>Discussion (HTML supported)</label>
-            <textarea id="b" placeholder="Use <div class='minutes-topic'>Title</div> and <ul class='minutes-list'><li>Point</li></ul>"></textarea>
+            <label>Meeting Content (HTML Snippets)</label>
+            <textarea id="b" placeholder="Example: <div class='minutes-topic'>Anti-Hazing</div><ul class='minutes-list'><li>Did training</li></ul>"></textarea>
         </div>
-        <button class="btn" id="saveBtn" onclick="sendToGitHub()">Generate & Publish</button>
+        <button class="btn" id="saveBtn" onclick="publish()">Publish Minutes</button>
     </div>
 </main>
 
 <script>
-async function sendToGitHub() {
+async function publish() {
     const title = document.getElementById('t').value;
     const date = document.getElementById('d').value;
     const time = document.getElementById('time').value;
@@ -22,11 +22,11 @@ async function sendToGitHub() {
     const body = document.getElementById('b').value;
     const btn = document.getElementById('saveBtn');
 
-    if(!title || !date) return alert("Fill in at least Title and Date!");
+    if(!title || !date) return alert("Title and Date are required!");
 
-    // Generate filename using date or slug
-    const slug = title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-    const filename = `${slug}-${Date.now()}.html`; // Use .html extension now
+    // Filename logic: 2026-01-05-minutes.html
+    const cleanTitle = title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+    const filename = `${cleanTitle}.html`;
 
     btn.innerText = "PUBLISHING...";
     btn.disabled = true;
@@ -39,15 +39,15 @@ async function sendToGitHub() {
         });
 
         if (response.ok) {
-            alert("SUCCESS: Meeting minutes are live!");
+            alert("SUCCESS! The page has been created.");
             window.location.href = "notes.html"; 
         } else {
-            alert("Upload failed. Check GitHub settings.");
+            alert("Upload failed. Verify your GITHUB_TOKEN.");
         }
     } catch (err) {
-        alert("Connection error.");
+        alert("Connection Error.");
     } finally {
-        btn.innerText = "Generate & Publish";
+        btn.innerText = "Publish Minutes";
         btn.disabled = false;
     }
 }
