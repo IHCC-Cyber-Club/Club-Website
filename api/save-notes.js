@@ -2,15 +2,17 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   const { title, date, content, filename } = req.body;
-  const token = process.env.GITHUB_TOKEN; 
+  const token = process.env.GITHUB_TOKEN; // Pulls from your Vercel Environment Variables
   const repoPath = 'IHCC-Cyber-Club/Club-Website';
 
-  // Formatting the note exactly how notes.html expects it
+  // We are forcing the forward slash here to override the VS Code auto-backslash
+  const filePath = `contents/notes/${filename}`;
+
   const fileContent = `---\ntitle: "${title}"\ndate: "${date}"\n---\n\n${content}`;
   const encodedContent = Buffer.from(fileContent).toString('base64');
 
   try {
-    const response = await fetch(`https://api.github.com/repos/${repoPath}/contents/content/notes/${filename}`, {
+    const response = await fetch(`https://api.github.com/repos/${repoPath}/contents/${filePath}`, {
       method: 'PUT',
       headers: {
         'Authorization': `token ${token}`,
