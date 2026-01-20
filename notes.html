@@ -1,24 +1,175 @@
-<script>
-    // Helper function to turn "01" into "January" and "5" into "5th"
-    function formatFullDate(dateString) {
-      const months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
-      
-      const parts = dateString.split('-');
-      if (parts.length !== 3) return dateString;
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Meeting Notes • IHCC Cybersecurity Club</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    :root {
+      --bg: #050111;
+      --card-bg: #110826;
+      --accent: #5e2ca5;
+      --text: #ffffff;
+      --primary: #ff4b4b;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    #bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .nav {
+      padding: 20px 5%;
+      border-bottom: 1px solid rgba(255, 75, 75, 0.2);
+      background: rgba(5, 1, 17, 0.8);
+      backdrop-filter: blur(10px);
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .brand {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      color: var(--primary);
+    }
+    .navlinks a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+    }
+    .navlinks a.active { color: var(--primary); }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      flex: 1;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 50px;
+      font-weight: 900;
+    }
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 40px 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .view-btn {
+      background-color: var(--accent);
+      color: white;
+      text-decoration: none;
+      padding: 12px 0;
+      width: 85%;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .footer {
+      padding: 40px;
+      text-align: center;
+      background: #000;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .mini {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .mini a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-family: 'Orbitron', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="bg"></div>
+
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">IHCC Cybersecurity Club</div>
+      <div class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="notes.html">Notes</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Meeting Notes</h1>
+    <div class="notes-grid" id="notes-grid">
+      <p style="grid-column: 1/-1; text-align: center;">Loading archived minutes...</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div style="font-weight:900; font-family: 'Orbitron', sans-serif;">IHCC Cyber</div>
+    <div class="mini">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="notes.html">Notes</a>
+      <a href="note-editor.html">Notes Editor</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { startBackgroundNet } from "./assets/bg-network.js";
+    startBackgroundNet("bg");
+  </script>
+
+  <script>
+    function formatFullDate(dateString) {
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      const parts = dateString.split('-');
+      if (parts.length < 3) return dateString;
       const year = parts[0];
       const month = months[parseInt(parts[1]) - 1];
       const day = parseInt(parts[2]);
-
-      // Add the "st", "nd", "rd", or "th" suffix
       let suffix = "th";
       if (day % 10 === 1 && day !== 11) suffix = "st";
       else if (day % 10 === 2 && day !== 12) suffix = "nd";
       else if (day % 10 === 3 && day !== 13) suffix = "rd";
-
       return `${month} ${day}${suffix}, ${year}`;
     }
 
@@ -27,32 +178,20 @@
       try {
           const response = await fetch('https://api.github.com/repos/IHCC-Cyber-Club/Club-Website/contents/notes');
           if (!response.ok) throw new Error('GitHub connection failed');
-          
           const files = await response.json();
           files.sort((a, b) => b.name.localeCompare(a.name));
-
           container.innerHTML = ''; 
-
           for (const file of files) {
               if (file.name.endsWith('.html')) {
-                  // Pulls the YYYY-MM-DD part from the filename
                   const rawDate = file.name.substring(0, 10); 
-                  
-                  // NEW: Formats to "Month DaySuffix, Year"
                   const displayDate = formatFullDate(rawDate);
-
-                  const noteElement = `
+                  container.insertAdjacentHTML('beforeend', `
                       <div class="card">
                           <h3>${displayDate}</h3>
                           <a class="view-btn" href="notes/${file.name}">View Notes</a>
                       </div>
-                  `;
-                  container.insertAdjacentHTML('beforeend', noteElement);
+                  `);
               }
-          }
-
-          if (container.innerHTML === '') {
-              container.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No archives found.</p>';
           }
       } catch (error) {
           container.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Unable to connect to GitHub.</p>';
@@ -60,3 +199,5 @@
     }
     document.addEventListener('DOMContentLoaded', loadMeetingNotes);
   </script>
+</body>
+</html>
