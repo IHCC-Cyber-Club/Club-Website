@@ -2,17 +2,6 @@ backend:
   name: github
   repo: IHCC-Cyber-Club/Club-Website
   branch: main
-
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
-
-collections:
-  - name: "notes"
-    label: "Meeting Notes"
-    folder: "content/notes"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+  # This points to a community-run helper that bridges GitHub and Vercel
+  base_url: https://test-site-rkej17j2v-cael-lenoxs-projects.vercel.app
+  auth_endpoint: /api/auth
