@@ -112,6 +112,50 @@
   <script type="module">
     import { startBackgroundNet } from "./assets/bg-network.js";
     startBackgroundNet("bg");
-  </script>
+
+    <script>
+async function loadMeetingNotes() {
+    // 1. Where the notes will go (Make sure you have a div with id="notes-list")
+    const container = document.getElementById('notes-list'); 
+    
+    try {
+        // 2. Fetch the list of files from your GitHub repo
+        const response = await fetch('https://api.github.com/repos/IHCC-Cyber-Club/Club-Website/contents/content/notes');
+        const files = await response.json();
+
+        // 3. Sort files so the newest meeting is at the top
+        files.sort((a, b) => b.name.localeCompare(a.name));
+
+        container.innerHTML = ''; // Clear any "Loading..." text
+
+        for (const file of files) {
+            if (file.name.endsWith('.md')) {
+                // Extracts date (YYYY-MM-DD) from filename
+                const dateStr = file.name.substring(0, 10); 
+                // Cleans up the filename to create a Title
+                const title = file.name.replace('.md', '').substring(11).replace(/-/g, ' ');
+
+                // 4. THE DESIGN: This is where you match your CSS
+                // Replace the classes below (e.g., 'note-card') with your actual club CSS classes
+                const noteElement = `
+                    <div class="note-card" style="margin-bottom: 20px; border-left: 5px solid #cc0000; padding: 15px; background: #f9f9f9;">
+                        <h2 style="margin-top: 0; text-transform: capitalize;">${title}</h2>
+                        <p><strong>Meeting Date:</strong> ${dateStr}</p>
+                        <a href="${file.html_url}" target="_blank" class="view-btn">Read Full Notes on GitHub</a>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', noteElement);
+            }
+        }
+    } catch (error) {
+        console.error("Error loading notes:", error);
+        container.innerHTML = '<p>Check back later for meeting notes!</p>';
+    }
+}
+
+// Run the function when the page loads
+document.addEventListener('DOMContentLoaded', loadMeetingNotes);
+</script>
+
 </body>
 </html>
