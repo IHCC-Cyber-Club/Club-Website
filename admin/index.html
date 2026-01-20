@@ -2,23 +2,27 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>IHCC Form Tester</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IHCC Note Editor</title>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
   <script>
+    // 1. Tell the CMS not to look for a config.yml file
     window.CMS_MANUAL_INIT = true;
+
+    // 2. Load the form configuration directly
     CMS.init({
       config: {
-        // This line lets you skip the login and test the form immediately
+        // 3. This line removes the login gate entirely
         local_backend: true, 
         backend: {
           name: "github",
           repo: "IHCC-Cyber-Club/Club-Website",
           branch: "main"
         },
-        display_url: "http://localhost:3000",
         media_folder: "assets/uploads",
+        public_folder: "/assets/uploads",
         collections: [
           {
             name: "meeting_notes",
@@ -26,10 +30,12 @@
             folder: "content/notes",
             create: true,
             slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            extension: "md",
+            format: "frontmatter",
             fields: [
-              { label: "Title", name: "title", widget: "string", hint: "e.g., Weekly Sync" },
+              { label: "Title", name: "title", widget: "string" },
               { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
-              { label: "Attendance", name: "attendance", widget: "list", hint: "Add names of attendees" },
+              { label: "Attendance", name: "attendance", widget: "string", required: false },
               { label: "Minutes / Body", name: "body", widget: "markdown" }
             ]
           }
