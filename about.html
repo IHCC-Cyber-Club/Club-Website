@@ -26,16 +26,17 @@
       color: var(--text);
       font-family: 'Inter', sans-serif;
       display: flex;
-      flex-direction: column; /* Stacks nav, container, and footer vertically */
+      flex-direction: column;
     }
 
+    /* BACKGROUND FIX: Ensure it stays fixed behind the flex content */
     #bg {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       z-index: -1;
+      pointer-events: none;
     }
 
-    /* Red Header / Nav Styling */
     .nav {
       padding: 20px 5%;
       border-bottom: 1px solid rgba(255, 75, 75, 0.2);
@@ -67,7 +68,7 @@
 
     .navlinks a.active { color: var(--primary); }
 
-    /* THE CONTAINER FIX: flex: 1; pushes the footer to the bottom */
+    /* CONTENT WRAPPER: Takes up remaining space */
     .main-content { 
       flex: 1; 
       padding-bottom: 80px;
@@ -111,17 +112,6 @@
       transition: 0.3s ease;
     }
 
-    .value-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(255, 75, 75, 0.15);
-    }
-
-    .value-card .icon {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-
     .value-card h3 {
       font-family: 'Orbitron', sans-serif;
       font-size: 1.3rem;
@@ -133,10 +123,8 @@
       font-size: 0.95rem;
       line-height: 1.6;
       color: rgba(255,255,255,0.8);
-      margin: 0;
     }
 
-    /* Footer Styling */
     .footer {
       padding: 40px;
       text-align: center;
@@ -181,22 +169,18 @@
 
   <div class="main-content">
     <h1 class="about-header">About the IHCC Cybersecurity Club</h1>
-
     <div class="section-title">Our Values</div>
-
     <div class="values-grid">
       <div class="value-card">
         <div class="icon">🤝</div>
         <h3>Community</h3>
         <p>Build strong student connections that last beyond the classroom.</p>
       </div>
-
       <div class="value-card">
         <div class="icon">📚</div>
         <h3>Support</h3>
         <p>Study groups and peer help to improve understanding and success.</p>
       </div>
-
       <div class="value-card">
         <div class="icon">🧠</div>
         <h3>Collaboration</h3>
@@ -213,3 +197,12 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="notes.html">Notes</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { startBackgroundNet } from "./assets/bg-network.js";
+    startBackgroundNet("bg");
+  </script>
+</body>
+</html>
