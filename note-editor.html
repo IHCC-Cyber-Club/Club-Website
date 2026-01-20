@@ -1,83 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>IHCC | Note Editor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root { --primary: #00f2ff; --bg: #0a0a0a; --card: #161616; --text: #e0e0e0; }
-        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
-        header { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0, 242, 255, 0.1); }
-        .logo { font-family: 'Orbitron', sans-serif; font-weight: 900; color: var(--primary); text-decoration: none; font-size: 1.2rem; }
-        nav a { color: var(--text); text-decoration: none; margin-left: 20px; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; }
-        main { flex: 1; padding: 50px 20px; display: flex; justify-content: center; align-items: center; }
-        .container { width: 100%; max-width: 650px; background: var(--card); padding: 40px; border-radius: 4px; border-top: 3px solid var(--primary); }
-        h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; color: var(--primary); margin-bottom: 30px; text-transform: uppercase; margin-top: 0; }
-        .field { margin-bottom: 20px; text-align: left; }
-        label { display: block; font-family: 'Orbitron', sans-serif; font-size: 10px; color: var(--primary); margin-bottom: 8px; letter-spacing: 1px; }
-        input, textarea { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 4px; font-family: 'Inter', sans-serif; box-sizing: border-box; }
-        textarea { height: 180px; }
-        .btn { background: var(--primary); color: #000; width: 100%; padding: 15px; border: none; font-family: 'Orbitron', sans-serif; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.2s; }
-        .footer { padding: 40px 5%; background: #000; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); font-family: 'Orbitron', sans-serif; }
-        .mini { margin-top: 15px; display: flex; justify-content: center; gap: 20px; }
-        .mini a { color: #666; text-decoration: none; font-size: 0.7rem; }
-    </style>
-</head>
-<body>
-    <header>
-        <a href="index.html" class="logo">IHCC CYBER</a>
-        <nav><a href="index.html">Home</a><a href="notes.html">Notes</a></nav>
-    </header>
-    <main>
-        <div class="container">
-            <h1>Note Editor</h1>
-            <div class="field"><label>Title</label><input type="text" id="t" placeholder="e.g. Workshop 1"></div>
-            <div class="field"><label>Date</label><input type="date" id="d"></div>
-            <div class="field"><label>Content</label><textarea id="b" placeholder="Type minutes here..."></textarea></div>
-            <button class="btn" id="saveBtn" onclick="sendToGitHub()">Generate & Save</button>
+<main>
+    <div class="container">
+        <h1>Note Editor</h1>
+        <div class="field"><label>Meeting Title</label><input type="text" id="t" placeholder="e.g. Weekly Meeting"></div>
+        <div class="field"><label>Date</label><input type="text" id="d" placeholder="e.g. Monday, January 5th, 2026"></div>
+        <div class="field"><label>Time</label><input type="text" id="time" placeholder="e.g. 11:45 AM – 12:00 PM"></div>
+        <div class="field"><label>Attendance</label><input type="text" id="att" placeholder="Names separated by commas"></div>
+        <div class="field">
+            <label>Discussion (HTML supported)</label>
+            <textarea id="b" placeholder="Use <div class='minutes-topic'>Title</div> and <ul class='minutes-list'><li>Point</li></ul>"></textarea>
         </div>
-    </main>
-    <footer class="footer">
-        <div style="font-weight:900;">IHCC Cyber</div>
-        <div class="mini">
-            <a href="index.html">Home</a><a href="about.html">About</a><a href="notes.html">Notes</a><a href="note-editor.html">Notes Editor</a>
-        </div>
-    </footer>
-    <script>
-    async function sendToGitHub() {
-        const title = document.getElementById('t').value;
-        const date = document.getElementById('d').value;
-        const body = document.getElementById('b').value;
-        const btn = document.getElementById('saveBtn');
+        <button class="btn" id="saveBtn" onclick="sendToGitHub()">Generate & Publish</button>
+    </div>
+</main>
 
-        if(!title || !date) return alert("Fill in title and date!");
+<script>
+async function sendToGitHub() {
+    const title = document.getElementById('t').value;
+    const date = document.getElementById('d').value;
+    const time = document.getElementById('time').value;
+    const attendance = document.getElementById('att').value;
+    const body = document.getElementById('b').value;
+    const btn = document.getElementById('saveBtn');
 
-        const slug = title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
-        const filename = `${date}-${slug}.md`;
+    if(!title || !date) return alert("Fill in at least Title and Date!");
 
-        btn.innerText = "UPLOADING...";
-        btn.disabled = true;
+    // Generate filename using date or slug
+    const slug = title.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+    const filename = `${slug}-${Date.now()}.html`; // Use .html extension now
 
-        try {
-            const response = await fetch('/api/save-note', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, date, content: body, filename })
-            });
+    btn.innerText = "PUBLISHING...";
+    btn.disabled = true;
 
-            if (response.ok) {
-                alert("SUCCESS!");
-                window.location.href = "notes.html"; 
-            } else {
-                alert("Upload failed. Check GitHub Token.");
-            }
-        } catch (err) {
-            alert("Connection error.");
-        } finally {
-            btn.innerText = "GENERATE & SAVE";
-            btn.disabled = false;
+    try {
+        const response = await fetch('/api/save-note', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title, date, time, attendance, content: body, filename })
+        });
+
+        if (response.ok) {
+            alert("SUCCESS: Meeting minutes are live!");
+            window.location.href = "notes.html"; 
+        } else {
+            alert("Upload failed. Check GitHub settings.");
         }
+    } catch (err) {
+        alert("Connection error.");
+    } finally {
+        btn.innerText = "Generate & Publish";
+        btn.disabled = false;
     }
-    </script>
-</body>
-</html>
+}
+</script>
