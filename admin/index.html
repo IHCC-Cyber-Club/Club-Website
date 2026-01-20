@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IHCC Admin Portal</title>
-    <link href="https://test-site-rkej17j2v-cael-lenoxs-projects.vercel.app/admin/config.yml" type="text/yaml" rel="cms-config-url" />
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </head>
-  <body></body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IHCC Admin Portal</title>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</head>
+<body>
+  <script>
+    // Manual Initialization: This replaces the need for a config.yml file entirely.
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "IHCC-Cyber-Club/Club-Website", // Your repo path
+          branch: "main",
+          base_url: "https://test-site-rkej17j2v-cael-lenoxs-projects.vercel.app",
+          auth_endpoint: "api/auth" 
+        },
+        media_folder: "assets/uploads",
+        public_folder: "/assets/uploads",
+        collections: [
+          {
+            name: "meeting_notes",
+            label: "Meeting Notes",
+            folder: "content/notes",
+            create: true,
+            slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+            fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
+              { label: "Body", name: "body", widget: "markdown" }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
 </html>
