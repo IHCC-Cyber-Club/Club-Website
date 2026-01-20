@@ -3,24 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>About • IHCC Cybersecurity Club</title>
-
+  <title>IHCC Cybersecurity Club</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
   <style>
     :root { 
       --primary: #ff4b4b; 
       --card-bg: #110826; 
-      --accent: #5e2ca5;
       --text: #ffffff;
+      --band-bg: rgba(94, 44, 165, 0.08); 
     }
 
-    /* THE FOOTER FIX: Ensure the body fills the whole screen height */
-    html, body {
-      height: 100%;
-      margin: 0;
-    }
-
+    html, body { height: 100%; margin: 0; }
     body {
       background-color: #050111;
       color: var(--text);
@@ -29,15 +23,8 @@
       flex-direction: column;
     }
 
-    /* BACKGROUND FIX: Fixed behind the flex content */
-    #bg {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
+    #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
-    /* Red Header / Nav Styling */
     .nav {
       padding: 20px 5%;
       border-bottom: 1px solid rgba(255, 75, 75, 0.2);
@@ -45,156 +32,73 @@
       backdrop-filter: blur(10px);
     }
 
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .brand {
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      color: var(--primary);
-    }
-
-    .navlinks a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.8rem;
-    }
-
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .brand { font-family: 'Orbitron', sans-serif; font-weight: 900; color: var(--primary); }
+    .navlinks a { color: white; text-decoration: none; margin-left: 25px; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; }
     .navlinks a.active { color: var(--primary); }
 
-    /* CONTENT WRAPPER: Pushes footer down */
-    .main-content { 
-      flex: 1; 
-      padding-bottom: 100px;
+    .main-content { flex: 1; }
+
+    /* HERO STYLING */
+    .hero { text-align: center; padding: 120px 20px; }
+    .glitch-text { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 4.5rem; color: white; margin-bottom: 30px; }
+    .btn { background: var(--primary); color: white; font-family: 'Orbitron', sans-serif; text-decoration: none; padding: 15px 35px; border-radius: 5px; display: inline-block; font-weight: 700; transition: 0.3s; }
+    .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 75, 75, 0.4); }
+
+    /* PURPLE BANDS */
+    .band {
+      width: 100%;
+      padding: 100px 0;
+      border-top: 1px solid rgba(94, 44, 165, 0.3);
+      border-bottom: 1px solid rgba(94, 44, 165, 0.3);
+      background: var(--band-bg);
+      margin-bottom: 60px;
     }
 
-    .about-header { 
-      font-family: 'Orbitron', sans-serif; 
-      font-weight: 900; 
-      color: white; 
-      font-size: 2.5rem;
-      text-align: center;
-      margin: 80px 0 20px;
+    .section-title { font-family: 'Orbitron', sans-serif; color: white; text-align: center; margin-bottom: 60px; font-size: 2.2rem; font-weight: 900; }
+    
+    .content-box {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .sub-tagline {
-      text-align: center;
-      color: rgba(255,255,255,0.7);
-      max-width: 700px;
-      margin: 0 auto 80px;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .section-title { 
-      font-family: 'Orbitron', sans-serif; 
-      color: white; 
-      text-align: center;
-      margin-bottom: 40px;
-      font-size: 1.8rem;
-      font-weight: 800;
-    }
-
-    /* STORY SECTION */
-    .story-card {
-      max-width: 900px;
-      margin: 0 auto 100px;
-      text-align: center;
-      padding: 0 20px;
-    }
-    .story-card p {
-      line-height: 1.8;
-      color: rgba(255,255,255,0.8);
-      font-size: 1.05rem;
-      margin-bottom: 20px;
-    }
-
-    /* VALUES GRID */
-    .values-grid {
+    .faq-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      max-width: 1300px;
-      margin: 0 auto 100px;
-      padding: 0 20px;
     }
 
-    .value-card {
-      background-color: var(--card-bg);
-      border-radius: 20px;
-      padding: 60px 40px; 
-      border: 1px solid rgba(255, 255, 255, 0.1);
+    .faq-card {
+      text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      transition: 0.3s ease;
     }
 
-    .value-card .icon { font-size: 3rem; margin-bottom: 25px; }
+    .faq-card .icon { font-size: 4rem; margin-bottom: 30px; color: white; }
+    .faq-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 20px; color: white; line-height: 1.4; }
+    .faq-card p { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.7); margin: 0; }
 
-    .value-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.3rem;
-      margin-bottom: 15px;
-      color: white;
-    }
+    /* HYPERLINK STYLE */
+    .program-link { color: #8a5cf5; text-decoration: none; font-weight: 600; }
+    .program-link:hover { text-decoration: underline; }
 
-    .value-card p {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.7);
-      margin: 0;
-    }
+    /* NOTES CALLOUT */
+    .notes-callout { text-align: center; max-width: 700px; margin: 0 auto; }
+    .notes-callout h3 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 20px; }
+    .notes-callout p { color: rgba(255,255,255,0.8); margin-bottom: 35px; font-size: 1.1rem; }
+    .btn.secondary { background: #5e2ca5; border-radius: 30px; padding: 12px 45px; }
 
-    /* INVOLVED CALLOUT */
-    .involved-wrap { padding: 0 20px; }
-    .involved-card {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      border-radius: 20px;
-      padding: 60px 40px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .involved-card h3 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: white; margin-bottom: 20px; }
-    .involved-card p { color: rgba(255,255,255,0.8); line-height: 1.6; font-size: 1rem; }
-    .president-link { color: #8a5cf5; text-decoration: none; font-weight: 600; }
-    .president-link:hover { text-decoration: underline; }
+    .footer { padding: 40px; text-align: center; background: #000; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+    .mini { margin-top: 15px; display: flex; justify-content: center; gap: 20px; }
+    .mini a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.75rem; font-family: 'Orbitron', sans-serif; }
 
-    /* Footer Styling */
-    .footer {
-      padding: 40px;
-      text-align: center;
-      background: #000;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .mini {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .mini a {
-      color: rgba(255,255,255,0.6);
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-family: 'Orbitron', sans-serif;
-    }
-
-    @media (max-width: 1000px) {
-      .values-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 1000px) { .faq-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -206,61 +110,51 @@
         <div class="brand">IHCC Cybersecurity Club</div>
       </a>
       <div class="navlinks">
-        <a href="index.html">Home</a>
-        <a class="active" href="about.html">About</a>
+        <a class="active" href="index.html">Home</a>
+        <a href="about.html">About</a>
         <a href="notes.html">Notes</a>
       </div>
     </div>
   </div>
 
   <div class="main-content">
-    <h1 class="about-header">About the IHCC Cybersecurity Club</h1>
-    <p class="sub-tagline">
-      A student-led organization focused on building skills, community, and real-world 
-      cybersecurity experience through collaboration and service.
-    </p>
-
-    <div class="section-title">Our Story</div>
-    <div class="story-card">
-      <p>
-        The IHCC Cybersecurity Club was formed in 2022 by students in the Cyber Security and 
-        Systems Administration program. Their goal was to build strong professional relationships 
-        while gaining hands-on experience that translates directly to the workforce.
-      </p>
-      <p>
-        Our journey is driven by innovation, customer-centricity, and simplifying complex 
-        technologies. Today, we continue pushing the boundaries of modern cloud infrastructure.
-      </p>
-    </div>
-
-    <div class="section-title">Our Values</div>
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="icon">🤝</div>
-        <h3>Community</h3>
-        <p>Our club strives to build strong student relationships that persist after graduation.</p>
+    <section class="hero">
+      <div class="container">
+        <h1 class="glitch-text" data-text="IHCC CYBER">IHCC CYBER</h1>
+        <a class="btn" href="about.html">About Us</a>
       </div>
+    </section>
 
-      <div class="value-card">
-        <div class="icon">📚</div>
-        <h3>Academic Support</h3>
-        <p>We promote study groups and peer support to improve understanding and success inside and outside the classroom.</p>
-      </div>
-
-      <div class="value-card">
-        <div class="icon">👥</div>
-        <h3>Collaboration</h3>
-        <p>We work together on technical challenges and projects to learn from one another and build teamwork skills.</p>
+    <div class="band">
+      <div class="content-box">
+        <div class="section-title">Frequently Asked Questions</div>
+        <div class="faq-grid">
+          <div class="faq-card">
+            <div class="icon">❓</div>
+            <h3>What is the IHCC Cyber Security Program?</h3>
+            <p>The <a href="https://www.indianhills.edu/academics/tech/computer_networks.php" class="program-link">Cybersecurity & Systems Administration (A.A.S.)</a> Program at Indian Hills Community College empowers students to develop hands-on skills in networking, system administration, and cyber defense.</p>
+          </div>
+          <div class="faq-card">
+            <div class="icon">🛡️</div>
+            <h3>What does this club do?</h3>
+            <p>This club emphasizes collaboration, professional growth, and community engagement within the field of cybersecurity. We provide an environment that encourages teamwork on labs and projects.</p>
+          </div>
+          <div class="faq-card">
+            <div class="icon">📅</div>
+            <h3>When and where do you meet?</h3>
+            <p>The club meets weekly on campus. Check the Notes page for the latest schedule, archived meeting minutes, and technical topics.</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="involved-wrap">
-      <div class="involved-card">
-        <h3>Want to get involved?</h3>
-        <p>
-          Membership is open to current students in the Cyber Security and Systems Administration program. 
-          Please contact <a href="mailto:Noah.Matt@stu.indianhills.edu" class="president-link">Club President Noah Matt</a> for more information.
-        </p>
+    <div class="band">
+      <div class="content-box">
+        <div class="notes-callout">
+          <h3>Meeting Notes</h3>
+          <p>Want to learn more about our club activities and technical deep-dives? Click below to access our full archive of meeting notes!</p>
+          <a class="btn secondary" href="notes.html">Meeting Notes</a>
+        </div>
       </div>
     </div>
   </div>
