@@ -11,8 +11,10 @@
       --primary: #ff4b4b; 
       --card-bg: #110826; 
       --text: #ffffff;
+      --band-bg: rgba(94, 44, 165, 0.08); 
     }
 
+    /* FOOTER FIX */
     html, body { height: 100%; margin: 0; }
     body {
       background-color: #050111;
@@ -22,6 +24,7 @@
       flex-direction: column;
     }
 
+    /* RED ANIMATED BACKGROUND SHAPES */
     #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
     .nav {
@@ -36,55 +39,62 @@
     .navlinks a { color: white; text-decoration: none; margin-left: 25px; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; }
     .navlinks a.active { color: var(--primary); }
 
-    .main-content { flex: 1; padding-bottom: 100px; }
+    .main-content { flex: 1; }
 
-    /* HERO STYLING */
-    .hero { text-align: center; padding: 100px 20px; }
-    .glitch-text { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 4rem; color: white; margin-bottom: 30px; }
-    .btn { background: var(--primary); color: white; font-family: 'Orbitron', sans-serif; text-decoration: none; padding: 15px 30px; border-radius: 5px; display: inline-block; font-weight: 700; transition: 0.3s; }
+    /* HERO SECTION */
+    .hero { text-align: center; padding: 120px 20px; }
+    .glitch-text { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 4.5rem; color: white; margin-bottom: 30px; }
+    .btn { background: var(--primary); color: white; font-family: 'Orbitron', sans-serif; text-decoration: none; padding: 15px 35px; border-radius: 5px; display: inline-block; font-weight: 700; transition: 0.3s; }
     .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 75, 75, 0.4); }
 
-    /* FAQ SECTION - REPLICATING IMAGE */
-    .section-title { font-family: 'Orbitron', sans-serif; color: white; text-align: center; margin-bottom: 60px; font-size: 2rem; font-weight: 900; }
+    /* PURPLE BANDS WITH LINES */
+    .band {
+      width: 100%;
+      padding: 100px 0;
+      border-top: 1px solid rgba(94, 44, 165, 0.3);
+      border-bottom: 1px solid rgba(94, 44, 165, 0.3);
+      background: var(--band-bg);
+      margin-bottom: 60px;
+    }
+
+    .section-title { font-family: 'Orbitron', sans-serif; color: white; text-align: center; margin-bottom: 60px; font-size: 2.2rem; font-weight: 900; }
     
+    .content-box {
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
     .faq-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 20px;
     }
 
     .faq-card {
-      background-color: var(--card-bg);
-      border-radius: 20px;
-      padding: 60px 40px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
     }
 
     .faq-card .icon { font-size: 4rem; margin-bottom: 30px; color: white; }
-    .faq-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; margin-bottom: 20px; color: white; line-height: 1.4; }
+    .faq-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.25rem; margin-bottom: 20px; color: white; line-height: 1.4; }
     .faq-card p { font-size: 0.95rem; line-height: 1.7; color: rgba(255,255,255,0.7); margin: 0; }
 
+    /* PROGRAM HYPERLINK STYLE */
+    .program-link { color: #8a5cf5; text-decoration: none; font-weight: 600; }
+    .program-link:hover { text-decoration: underline; }
+
     /* MEETING NOTES CALLOUT */
-    .notes-callout-wrap { margin-top: 100px; padding: 0 20px; }
-    .notes-callout {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: var(--card-bg);
-      border-radius: 20px;
-      padding: 60px 40px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .notes-callout h3 { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; color: white; margin-bottom: 20px; }
-    .notes-callout p { color: rgba(255,255,255,0.8); margin-bottom: 30px; font-size: 1.1rem; }
-    .btn.secondary { background: #5e2ca5; border-radius: 30px; padding: 12px 40px; }
+    .notes-callout { text-align: center; max-width: 700px; margin: 0 auto; }
+    .notes-callout h3 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: white; margin-bottom: 20px; }
+    .notes-callout p { color: rgba(255,255,255,0.8); margin-bottom: 35px; font-size: 1.1rem; }
+    .btn.secondary { background: #5e2ca5; border-radius: 30px; padding: 12px 45px; }
 
     .footer { padding: 40px; text-align: center; background: #000; border-top: 1px solid rgba(255, 255, 255, 0.1); }
     .mini { margin-top: 15px; display: flex; justify-content: center; gap: 20px; }
@@ -117,34 +127,38 @@
       </div>
     </section>
 
-    <section>
-      <div class="section-title">Frequently Asked Questions</div>
-      <div class="faq-grid">
-        <div class="faq-card">
-          <div class="icon">❓</div>
-          <h3>What is the IHCC Cyber Security Program?</h3>
-          <p>The Cybersecurity & Systems Administration (A.A.S.) Program at Indian Hills Community College empowers students to develop hands-on skills in networking, system administration, and cyber defense.</p>
-        </div>
-        <div class="faq-card">
-          <div class="icon">🛡️</div>
-          <h3>What does this club do?</h3>
-          <p>This club emphasizes collaboration, professional growth, and community engagement within the field of cybersecurity and systems administration. It provides an environment that encourages teamwork.</p>
-        </div>
-        <div class="faq-card">
-          <div class="icon">📅</div>
-          <h3>When and where do you meet?</h3>
-          <p>The club meets every other Monday in the Advanced Technology Building. Meetings are scheduled to fit around academic commitments and provide a consistent opportunity for students to connect.</p>
+    <div class="band">
+      <div class="content-box">
+        <div class="section-title">Frequently Asked Questions</div>
+        <div class="faq-grid">
+          <div class="faq-card">
+            <div class="icon">❓</div>
+            <h3>What is the IHCC Cyber Security Program?</h3>
+            <p>The <a href="https://www.indianhills.edu/academics/tech/computer_networks.php" class="program-link">Cybersecurity & Systems Administration (A.A.S.)</a> program at Indian Hills Community College empowers students to develop hands-on skills in networking, systems administration, and cyber defense.</p>
+          </div>
+          <div class="faq-card">
+            <div class="icon">🛡️</div>
+            <h3>What does this club do?</h3>
+            <p>This club emphasizes collaboration, professional growth, and community engagement within the field of cybersecurity. We provide an environment that encourages teamwork on labs and projects.</p>
+          </div>
+          <div class="faq-card">
+            <div class="icon">📅</div>
+            <h3>When and where do you meet?</h3>
+            <p>The club meets weekly on campus. Check the Notes page for the latest schedule, archived meeting minutes, and technical topics.</p>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="notes-callout-wrap">
-      <div class="notes-callout">
-        <h3>Meeting Notes</h3>
-        <p>Want to learn more about our club? Click the link below to access our meeting notes!</p>
-        <a class="btn secondary" href="notes.html">Meeting Notes</a>
+    <div class="band">
+      <div class="content-box">
+        <div class="notes-callout">
+          <h3>Meeting Notes</h3>
+          <p>Want to learn more about our club activities and technical deep-dives? Click below to access our full archive of meeting notes!</p>
+          <a class="btn secondary" href="notes.html">Meeting Notes</a>
+        </div>
       </div>
-    </section>
+    </div>
   </div>
 
   <footer class="footer">
