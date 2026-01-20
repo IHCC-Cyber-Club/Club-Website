@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Minutes • test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
+</head>
+<body>
+  <div id="bg"></div>
+  <div class="page">
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand">IHCC Cybersecurity Club</div>
+        <div class="navlinks">
+          <a href="../../index.html">Home</a>
+          <a href="../../about.html">About</a>
+          <a class="active" href="../../notes.html">Notes</a>
+        </div>
+      </div>
+    </div>
+    <section class="minutes">
+      <div class="container">
+        <a class="back-btn" href="../../notes.html">Back</a>
+        <div class="minutes-doc">
+          <p class="minutes-line"><span class="minutes-label">Date:</span> a</p>
+          <p class="minutes-line"><span class="minutes-label">Time:</span> a</p>
+          <p class="minutes-line"><span class="minutes-label">Attendance:</span> a</p>
+          <div class="minutes-section-title">Topics Discussed:</div>
+          a
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div style="font-weight:900;">IHCC Cyber</div>
+      <div class="mini">
+        <a href="../../index.html">Home</a>
+        <a href="../../about.html">About</a>
+        <a href="../../notes.html">Notes</a>
+      </div>
+    </footer>
+  </div>
+  <script type="module">
+    import { startBackgroundNet } from "../../assets/bg-network.js";
+    startBackgroundNet("bg");
+  </script>
+</body>
+</html>
