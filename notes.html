@@ -1,14 +1,14 @@
 async function loadMeetingNotes() {
     const container = document.getElementById('notes-grid'); 
     try {
-        // Updated to fetch from the root /notes folder
+        // Fetches from the root /notes directory
         const response = await fetch('https://api.github.com/repos/IHCC-Cyber-Club/Club-Website/contents/notes');
         
         if (!response.ok) throw new Error('Could not reach GitHub');
         
         const files = await response.json();
         
-        // Filtering for .html files in the root /notes folder
+        // Filter for .html files and sort them (newest date first)
         const htmlFiles = files.filter(f => f.name.endsWith('.html'));
         htmlFiles.sort((a, b) => b.name.localeCompare(a.name));
 
@@ -20,6 +20,7 @@ async function loadMeetingNotes() {
         }
 
         for (const file of htmlFiles) {
+            // Remove extension and dashes for a clean card title
             const displayName = file.name.replace('.html', '').replace(/-/g, ' ');
             
             const card = `
@@ -34,6 +35,7 @@ async function loadMeetingNotes() {
             container.insertAdjacentHTML('beforeend', card);
         }
     } catch (e) {
+        console.error(e);
         container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #ff4b4b;">Unable to connect to GitHub.</p>';
     }
 }
