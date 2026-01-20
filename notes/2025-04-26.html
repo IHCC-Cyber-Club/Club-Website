@@ -3,77 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Minutes • Apr 26, 2025</title>
+  <title>Meeting Log • IHCC Cybersecurity Club</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/styles.css">
-</head>
+  <style>
+    :root { 
+      --primary: #ff4b4b; 
+      --card-bg: #0d1117; 
+      --text: #ffffff;
+    }
 
+    html, body { height: 100%; margin: 0; }
+    body {
+      background-color: #050111;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+    .nav {
+      padding: 20px 5%;
+      border-bottom: 1px solid rgba(255, 75, 75, 0.2);
+      background: rgba(5, 1, 17, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .brand { font-family: 'Orbitron', sans-serif; font-weight: 900; color: var(--primary); }
+    .navlinks a { color: white; text-decoration: none; margin-left: 25px; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; }
+
+    .main-content { flex: 1; padding: 60px 20px; }
+
+    /* TERMINAL STYLE FOR LOGS */
+    .terminal-box {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      max-width: 900px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .terminal-header {
+      background: #161b22;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .terminal-buttons { display: flex; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+    .terminal-user { font-family: monospace; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    .terminal-body { padding: 40px; }
+    
+    .log-title { 
+      font-family: 'Orbitron', sans-serif; 
+      color: var(--primary); 
+      font-size: 1.4rem; 
+      margin-bottom: 25px; 
+      text-transform: uppercase;
+    }
+
+    .log-content {
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .log-section { margin-bottom: 30px; }
+    .log-section h4 { color: var(--primary); font-family: 'Orbitron', sans-serif; margin-bottom: 10px; font-size: 0.9rem; }
+    .log-section ul { padding-left: 20px; list-style-type: square; }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #8a5cf5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    .footer { padding: 40px; text-align: center; background: #000; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  </style>
+</head>
 <body>
   <div id="bg"></div>
 
-  <div class="page">
-    <div class="nav">
-      <div class="nav-inner">
+  <div class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" style="text-decoration: none;">
         <div class="brand">IHCC Cybersecurity Club</div>
-        <div class="navlinks">
-          <a href="../index.html">Home</a>
-          <a href="../about.html">About</a>
-          <a class="active" href="../notes.html">Notes</a>
-        </div>
-      </div>
-    </div>
-
-    <section class="minutes">
-      <div class="container">
-        <a class="back-btn" href="../notes.html">Back to Archive</a>
-
-        <div class="minutes-doc">
-          <p class="minutes-line"><span class="minutes-label">Date:</span> Saturday, April 26th, 2025</p>
-          <p class="minutes-line"><span class="minutes-label">Time:</span> 3:00 PM</p>
-          <p class="minutes-line">
-            <span class="minutes-label">Attendance:</span>
-            Dante Sims, Samantha Frasher, Seth Staydohar, Kyle Graves, Kyrsten DeWeese
-          </p>
-
-          <div class="minutes-section-title">Topics Discussed:</div>
-
-          <div class="minutes-topic">Fundraising Planning</div>
-          <ul class="minutes-list">
-            <li>Reviewed previous ideas for a lemonade stand and coffee/donut sales.</li>
-            <li>Concerns were raised regarding the one-week planning window for the lemonade stand.</li>
-            <li>Dante and the Treasurer are unavailable next week; Sam will coordinate with Nathan for funds.</li>
-          </ul>
-
-          <div class="minutes-topic">Voting & Approvals</div>
-          <ul class="minutes-list">
-            <li><strong>Lemonade Stand:</strong> Motion to host in two weeks was postponed due to scheduling concerns.</li>
-            <li><strong>Donut Fundraiser:</strong> Motion to host next week was unanimously approved.</li>
-          </ul>
-
-          <div class="minutes-topic">Next Week's Plans</div>
-          <div class="minutes-paragraph">
-            The coffee and donut fundraiser is scheduled for next week. Two meetings are planned for Wednesday: a morning session at 7:00 AM for the fundraiser, and an afternoon session to finalize lemonade stand details.
-          </div>
-
-          <div class="minutes-section-title">Motions Passed:</div>
-          <ul class="minutes-list">
-            <li>Host a coffee & donut fundraiser next week.</li>
-            <li>Postpone lemonade stand planning for further discussion.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div style="font-weight:900; font-family: 'Orbitron', sans-serif;">IHCC Cyber</div>
-      <div class="mini">
+      </a>
+      <div class="navlinks">
         <a href="../index.html">Home</a>
         <a href="../about.html">About</a>
         <a href="../notes.html">Notes</a>
       </div>
-    </footer>
+    </div>
   </div>
+
+  <div class="main-content">
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <div class="terminal-user">root@cyberrookie:~/logs/2025-04-26.log</div>
+      </div>
+      <div class="terminal-body">
+        <div class="log-title">> MEETING_LOG: April 26th, 2025</div>
+        <div class="log-content">
+          <p><strong>Time:</strong> 3:00 PM</p>
+          <p><strong>Attendance:</strong> Dante Sims, Samantha Frasher, Seth Staydohar, Kyle Graves, Kyrsten DeWeese</p>
+          
+          <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+
+          <div class="log-section">
+            <h4>[FUNDRAISING PLANNING]</h4>
+            <ul>
+              <li>Reviewed ideas: Lemonade stand and coffee/donut sales.</li>
+              <li>Constraint: One-week planning window for the lemonade stand was deemed insufficient.</li>
+              <li>Logistics: Dante and the Treasurer are unavailable next week; Sam to coordinate funds with Nathan.</li>
+            </ul>
+          </div>
+
+          <div class="log-section">
+            <h4>[VOTING & APPROVALS]</h4>
+            <ul>
+              <li>Lemonade Stand: Motion to host in two weeks postponed due to scheduling.</li>
+              <li>Donut Fundraiser: Motion to host next week unanimously approved.</li>
+            </ul>
+          </div>
+
+          <div class="log-section">
+            <h4>[NEXT WEEK'S OPERATIONS]</h4>
+            <ul>
+              <li>Schedule: Coffee and donut fundraiser confirmed for next week.</li>
+              <li>Double Session: 7:00 AM fundraiser session and an afternoon session for lemonade stand finalization.</li>
+            </ul>
+          </div>
+
+          <div class="log-section">
+            <h4>[MOTIONS PASSED]</h4>
+            <ul>
+              <li>Host coffee & donut fundraiser next week.</li>
+              <li>Postpone lemonade stand planning for further discussion.</li>
+            </ul>
+          </div>
+        </div>
+        <a href="../notes.html" class="back-link">< Return to Archive</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <a href="../index.html" style="text-decoration: none; color: inherit;">
+      <div style="font-weight:900; font-family: 'Orbitron', sans-serif;">IHCC Cyber</div>
+    </a>
+  </footer>
 
   <script type="module">
     import { startBackgroundNet } from "../assets/bg-network.js";

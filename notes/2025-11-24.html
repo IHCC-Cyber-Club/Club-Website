@@ -3,95 +3,187 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Minutes • Nov 24, 2025</title>
+  <title>Meeting Log • IHCC Cybersecurity Club</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/styles.css">
-</head>
+  <style>
+    :root { 
+      --primary: #ff4b4b; 
+      --card-bg: #0d1117; 
+      --text: #ffffff;
+    }
 
+    html, body { height: 100%; margin: 0; }
+    body {
+      background-color: #050111;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+    .nav {
+      padding: 20px 5%;
+      border-bottom: 1px solid rgba(255, 75, 75, 0.2);
+      background: rgba(5, 1, 17, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .brand { font-family: 'Orbitron', sans-serif; font-weight: 900; color: var(--primary); }
+    .navlinks a { color: white; text-decoration: none; margin-left: 25px; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; }
+
+    .main-content { flex: 1; padding: 60px 20px; }
+
+    /* TERMINAL STYLE FOR LOGS */
+    .terminal-box {
+      background: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      max-width: 900px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .terminal-header {
+      background: #161b22;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .terminal-buttons { display: flex; gap: 8px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; }
+    .dot.yellow { background: #ffbd2e; }
+    .dot.green { background: #27c93f; }
+    .terminal-user { font-family: monospace; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+    .terminal-body { padding: 40px; }
+    
+    .log-title { 
+      font-family: 'Orbitron', sans-serif; 
+      color: var(--primary); 
+      font-size: 1.4rem; 
+      margin-bottom: 25px; 
+      text-transform: uppercase;
+    }
+
+    .log-content {
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .log-section { margin-bottom: 30px; }
+    .log-section h4 { color: var(--primary); font-family: 'Orbitron', sans-serif; margin-bottom: 10px; font-size: 0.9rem; }
+    .log-section ul { padding-left: 20px; list-style-type: square; }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #8a5cf5;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .back-link:hover { text-decoration: underline; }
+
+    .footer { padding: 40px; text-align: center; background: #000; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+  </style>
+</head>
 <body>
   <div id="bg"></div>
 
-  <div class="page">
-    <div class="nav">
-      <div class="nav-inner">
+  <div class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" style="text-decoration: none;">
         <div class="brand">IHCC Cybersecurity Club</div>
-        <div class="navlinks">
-          <a href="../index.html">Home</a>
-          <a href="../about.html">About</a>
-          <a class="active" href="../notes.html">Notes</a>
-        </div>
-      </div>
-    </div>
-
-    <section class="minutes">
-      <div class="container">
-        <a class="back-btn" href="../notes.html">Back to Archive</a>
-
-        <div class="minutes-doc">
-          <p class="minutes-line"><span class="minutes-label">Date:</span> Monday, November 24th, 2025</p>
-          <p class="minutes-line"><span class="minutes-label">Time:</span> 11:45 AM</p>
-          <p class="minutes-line">
-            <span class="minutes-label">Attendance:</span>
-            Noah Matt, Brad Piatt, Charlie Hernandez, Emily Hofstetter, Cael Lenox, Brooke Lyle, Seth Jensen, David Ades, Caleb Gooden
-          </p>
-
-          <div class="minutes-section-title">Topics Discussed:</div>
-
-          <div class="minutes-topic">Communication Channels</div>
-          <ul class="minutes-list">
-            <li>Students cannot add others to Teams; Mr. Tillotson will be asked to handle additions.</li>
-            <li>GroupMe setup was successful; most members have joined.</li>
-          </ul>
-
-          <div class="minutes-topic">Bylaw Amendments</div>
-          <ul class="minutes-list">
-            <li><strong>Article V:</strong> Officers can now hold positions for more than a year if assuming a role via resignation.</li>
-            <li><strong>Article VII:</strong> Official meeting schedule changed to twice monthly.</li>
-          </ul>
-
-          <div class="minutes-topic">Club Supervision</div>
-          <div class="minutes-paragraph">
-            Professors Tillotson and V are the primary candidates. Professor Tillotson will be approached first due to higher class frequency, followed by Professor Repalle if needed.
-          </div>
-
-          <div class="minutes-topic">Fundraising & Logistics</div>
-          <ul class="minutes-list">
-            <li>Focus on non-perishables (e.g., dry lemonade mix) to reduce waste.</li>
-            <li>Emily H. provided a Walmart discount card for resource purchasing.</li>
-            <li>Expansion into seasonal items: Cookies, brownies, and hot chocolate for winter.</li>
-            <li>Need for better profit margin tracking and faster production procedures.</li>
-          </ul>
-
-          <div class="minutes-topic">Club Website Development</div>
-          <div class="minutes-paragraph">
-            Noah is developing a tentative static website, inspired by the Software Development Club's model, to increase professionalism and aid in donation outreach.
-          </div>
-
-          <div class="minutes-topic">Trips & Funding</div>
-          <div class="minutes-paragraph">
-            The club aims to attend BPA events and the Iowa Tech Summit. Supervisor will request funding; otherwise, the club will fundraise for these costs.
-          </div>
-
-          <div class="minutes-section-title">Motions Passed:</div>
-          <ul class="minutes-list">
-            <li><strong>Amend Bylaws:</strong> Bylaws updated and uploaded to Teams.</li>
-            <li><strong>Fundraising Meeting:</strong> Approved for Dec 1, 2025, at 11:45 (ATC220).</li>
-            <li><strong>Mainline Meeting:</strong> Approved for Dec 8, 2025, at 11:45 (ATC220).</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div style="font-weight:900; font-family: 'Orbitron', sans-serif;">IHCC Cyber</div>
-      <div class="mini">
+      </a>
+      <div class="navlinks">
         <a href="../index.html">Home</a>
         <a href="../about.html">About</a>
         <a href="../notes.html">Notes</a>
       </div>
-    </footer>
+    </div>
   </div>
+
+  <div class="main-content">
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <div class="dot red"></div>
+          <div class="dot yellow"></div>
+          <div class="dot green"></div>
+        </div>
+        <div class="terminal-user">root@cyberrookie:~/logs/2025-11-24.log</div>
+      </div>
+      <div class="terminal-body">
+        <div class="log-title">> MEETING_LOG: November 24th, 2025</div>
+        <div class="log-content">
+          <p><strong>Time:</strong> 11:45 AM</p>
+          <p><strong>Attendance:</strong> Noah Matt, Brad Piatt, Charlie Hernandez, Emily Hofstetter, Cael Lenox, Brooke Lyle, Seth Jensen, David Ades, Caleb Gooden</p>
+          
+          <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+
+          <div class="log-section">
+            <h4>[COMMUNICATION & CHANNELS]</h4>
+            <ul>
+              <li>Teams: Student additions to be handled by Mr. Tillotson.</li>
+              <li>GroupMe: Successful setup; most members have joined.</li>
+            </ul>
+          </div>
+
+          <div class="log-section">
+            <h4>[BYLAW AMENDMENTS]</h4>
+            <ul>
+              <li>Article V: Officers may hold positions for &gt;1 year if assuming a role via resignation.</li>
+              <li>Article VII: Official meeting schedule changed to twice monthly.</li>
+            </ul>
+          </div>
+
+          <div class="log-section">
+            <h4>[FUNDRAISING & LOGISTICS]</h4>
+            <ul>
+              <li>Focus: Non-perishable items (dry lemonade mix) to reduce waste.</li>
+              <li>Resources: Emily H. provided Walmart discount card for resource purchasing.</li>
+              <li>Seasonal: Expansion into winter items (Cookies, brownies, hot chocolate).</li>
+              <li>Efficiency: Need for improved profit margin tracking and faster production.</li>
+            </ul>
+          </div>
+
+          <div class="log-section">
+            <h4>[WEB DEVELOPMENT & TRIPS]</h4>
+            <ul>
+              <li>Website: Static site in development to increase professionalism and outreach.</li>
+              <li>Future Events: Club aims to attend Iowa Tech Summit and BPA events.</li>
+              <li>Funding: Supervisor to request funding; club will fundraise for remaining costs.</li>
+            </ul>
+          </div>
+
+          <div class="log-section">
+            <h4>[MOTIONS PASSED]</h4>
+            <ul>
+              <li>Amend Bylaws: Updated bylaws uploaded to Teams.</li>
+              <li>Fundraising Meeting: Approved for Dec 1, 2025 (ATC220).</li>
+              <li>Mainline Meeting: Approved for Dec 8, 2025 (ATC220).</li>
+            </ul>
+          </div>
+        </div>
+        <a href="../notes.html" class="back-link">< Return to Archive</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <a href="../index.html" style="text-decoration: none; color: inherit;">
+      <div style="font-weight:900; font-family: 'Orbitron', sans-serif;">IHCC Cyber</div>
+    </a>
+  </footer>
 
   <script type="module">
     import { startBackgroundNet } from "../assets/bg-network.js";
