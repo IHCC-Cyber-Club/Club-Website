@@ -29,7 +29,7 @@
       flex-direction: column;
     }
 
-    /* BACKGROUND FIX: Ensure it stays fixed behind the flex content */
+    /* BACKGROUND FIX: Fixed behind the flex content */
     #bg {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -37,6 +37,7 @@
       pointer-events: none;
     }
 
+    /* Red Header / Nav Styling */
     .nav {
       padding: 20px 5%;
       border-bottom: 1px solid rgba(255, 75, 75, 0.2);
@@ -68,49 +69,76 @@
 
     .navlinks a.active { color: var(--primary); }
 
-    /* CONTENT WRAPPER: Takes up remaining space */
+    /* CONTENT WRAPPER: Pushes footer down */
     .main-content { 
       flex: 1; 
-      padding-bottom: 80px;
+      padding-bottom: 100px;
     }
 
     .about-header { 
       font-family: 'Orbitron', sans-serif; 
       font-weight: 900; 
       color: white; 
-      font-size: 34px;
+      font-size: 2.5rem;
       text-align: center;
-      margin: 80px 0 40px;
+      margin: 80px 0 20px;
+    }
+
+    .sub-tagline {
+      text-align: center;
+      color: rgba(255,255,255,0.7);
+      max-width: 700px;
+      margin: 0 auto 80px;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
     .section-title { 
       font-family: 'Orbitron', sans-serif; 
-      color: var(--primary); 
+      color: white; 
       text-align: center;
-      margin-bottom: 50px;
-      font-size: 1.5rem;
+      margin-bottom: 40px;
+      font-size: 1.8rem;
+      font-weight: 800;
     }
 
+    /* STORY SECTION */
+    .story-card {
+      max-width: 900px;
+      margin: 0 auto 100px;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .story-card p {
+      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+    }
+
+    /* VALUES GRID */
     .values-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 30px;
-      max-width: 1100px;
-      margin: 0 auto;
+      max-width: 1300px;
+      margin: 0 auto 100px;
       padding: 0 20px;
     }
 
     .value-card {
       background-color: var(--card-bg);
-      border-radius: 12px;
-      padding: 50px 30px; 
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 60px 40px; 
+      border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       transition: 0.3s ease;
     }
+
+    .value-card .icon { font-size: 3rem; margin-bottom: 25px; }
 
     .value-card h3 {
       font-family: 'Orbitron', sans-serif;
@@ -122,9 +150,27 @@
     .value-card p {
       font-size: 0.95rem;
       line-height: 1.6;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.7);
+      margin: 0;
     }
 
+    /* INVOLVED CALLOUT */
+    .involved-wrap { padding: 0 20px; }
+    .involved-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      border-radius: 20px;
+      padding: 60px 40px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .involved-card h3 { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: white; margin-bottom: 20px; }
+    .involved-card p { color: rgba(255,255,255,0.8); line-height: 1.6; font-size: 1rem; }
+    .president-link { color: #8a5cf5; text-decoration: none; font-weight: 600; }
+    .president-link:hover { text-decoration: underline; }
+
+    /* Footer Styling */
     .footer {
       padding: 40px;
       text-align: center;
@@ -146,7 +192,7 @@
       font-family: 'Orbitron', sans-serif;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1000px) {
       .values-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -169,22 +215,52 @@
 
   <div class="main-content">
     <h1 class="about-header">About the IHCC Cybersecurity Club</h1>
+    <p class="sub-tagline">
+      A student-led organization focused on building skills, community, and real-world 
+      cybersecurity experience through collaboration and service.
+    </p>
+
+    <div class="section-title">Our Story</div>
+    <div class="story-card">
+      <p>
+        The IHCC Cybersecurity Club was formed in 2022 by students in the Cyber Security and 
+        Systems Administration program. Their goal was to build strong professional relationships 
+        while gaining hands-on experience that translates directly to the workforce.
+      </p>
+      <p>
+        Our journey is driven by innovation, customer-centricity, and simplifying complex 
+        technologies. Today, we continue pushing the boundaries of modern cloud infrastructure.
+      </p>
+    </div>
+
     <div class="section-title">Our Values</div>
     <div class="values-grid">
       <div class="value-card">
         <div class="icon">🤝</div>
         <h3>Community</h3>
-        <p>Build strong student connections that last beyond the classroom.</p>
+        <p>Our club strives to build strong student relationships that persist after graduation.</p>
       </div>
+
       <div class="value-card">
         <div class="icon">📚</div>
-        <h3>Support</h3>
-        <p>Study groups and peer help to improve understanding and success.</p>
+        <h3>Academic Support</h3>
+        <p>We promote study groups and peer support to improve understanding and success inside and outside the classroom.</p>
       </div>
+
       <div class="value-card">
-        <div class="icon">🧠</div>
+        <div class="icon">👥</div>
         <h3>Collaboration</h3>
-        <p>Work together on challenges and projects to learn teamwork skills.</p>
+        <p>We work together on technical challenges and projects to learn from one another and build teamwork skills.</p>
+      </div>
+    </div>
+
+    <div class="involved-wrap">
+      <div class="involved-card">
+        <h3>Want to get involved?</h3>
+        <p>
+          Membership is open to current students in the Cyber Security and Systems Administration program. 
+          Please contact <a href="mailto:Noah.Matt@stu.indianhills.edu" class="president-link">Club President Noah Matt</a> for more information.
+        </p>
       </div>
     </div>
   </div>
