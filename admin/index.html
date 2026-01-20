@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>IHCC Admin Portal</title>
+  <title>IHCC Form Tester</title>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
@@ -10,13 +10,14 @@
     window.CMS_MANUAL_INIT = true;
     CMS.init({
       config: {
+        // This line lets you skip the login and test the form immediately
+        local_backend: true, 
         backend: {
           name: "github",
           repo: "IHCC-Cyber-Club/Club-Website",
-          branch: "main",
-          base_url: "https://test-site-git-main-cael-lenoxs-projects.vercel.app",
-          auth_endpoint: "/api/auth" // Points to your new api/auth.js
+          branch: "main"
         },
+        display_url: "http://localhost:3000",
         media_folder: "assets/uploads",
         collections: [
           {
@@ -26,9 +27,10 @@
             create: true,
             slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
             fields: [
-              { label: "Title", name: "title", widget: "string" },
+              { label: "Title", name: "title", widget: "string", hint: "e.g., Weekly Sync" },
               { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" },
-              { label: "Body", name: "body", widget: "markdown" }
+              { label: "Attendance", name: "attendance", widget: "list", hint: "Add names of attendees" },
+              { label: "Minutes / Body", name: "body", widget: "markdown" }
             ]
           }
         ]
